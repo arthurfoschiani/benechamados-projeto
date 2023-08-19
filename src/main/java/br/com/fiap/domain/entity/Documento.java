@@ -19,15 +19,19 @@ public class Documento {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ID_TP_DOCUMENTO", referencedColumnName = "ID_TP_DOCUMENTO", foreignKey = @ForeignKey(name = "FK_TP_DOCUMENTO"))
     private TipoDocumento tipoDocumento;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA", foreignKey = @ForeignKey(name = "FK_PESSOA"))
+    private Pessoa pessoa;
 
     public Documento() {
     }
 
-    public Documento(Long id, String numero, LocalDate validade, TipoDocumento tipoDocumento) {
+    public Documento(Long id, String numero, LocalDate validade, TipoDocumento tipoDocumento, Pessoa pessoa) {
         this.setId(id);
         this.setNumero(numero);
         this.setValidade(validade);
         this.setTipoDocumento(tipoDocumento);
+        this.setPessoa(pessoa);
     }
 
     public Long getId() {
@@ -66,6 +70,15 @@ public class Documento {
         return this;
     }
 
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public Documento setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Documento{" +
@@ -73,6 +86,7 @@ public class Documento {
                 ", numero='" + numero + '\'' +
                 ", validade=" + validade +
                 ", tipoDocumento=" + tipoDocumento +
+                ", pessoa=" + pessoa +
                 '}';
     }
 }

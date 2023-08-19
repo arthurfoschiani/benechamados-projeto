@@ -43,9 +43,6 @@ public class TipoDocumento {
 
     @Override
     public String toString() {
-        return "TipoDocumento{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}';
+        return id + " - " + nome;
     }
 }
